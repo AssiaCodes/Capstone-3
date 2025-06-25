@@ -3,15 +3,15 @@ package org.yearup.data.mysql;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.yearup.models.Product;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-class MySqlProductDaoTest extends BaseDaoTestClass
-{
+@SpringBootTest // automatically start our test for us --idk
+class MySqlProductDaoTest extends BaseDaoTestClass {
     private MySqlProductDao dao;
 
     @BeforeEach

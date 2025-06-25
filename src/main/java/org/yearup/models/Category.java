@@ -1,30 +1,23 @@
 package org.yearup.models;
 
-public class Category
-{
-    private int categoryId;
+public class Category {
+    private int category_id;
     private String name;
     private String description;
 
-    public Category()
-    {
+    public Category() {
     }
 
-    public Category(int categoryId, String name, String description)
-    {
-        this.categoryId = categoryId;
+    public Category(int category_id, String name, String description) {
+        this.category_id = category_id;
         this.name = name;
         this.description = description;
     }
 
-    public int getCategoryId()
-    {
-        return categoryId;
-    }
 
-    public void setCategoryId(int categoryId)
     {
-        this.categoryId = categoryId;
+
+
     }
 
     public String getName()
@@ -46,4 +39,15 @@ public class Category
     {
         this.description = description;
     }
+
+
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
+
+    }
 }
+
