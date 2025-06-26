@@ -13,11 +13,7 @@ public class Category {
         this.name = name;
         this.description = description;
     }
-
-
     {
-
-
     }
 
     public String getName()

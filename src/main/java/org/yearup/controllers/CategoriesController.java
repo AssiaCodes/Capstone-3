@@ -60,10 +60,7 @@ public class CategoriesController {
               throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
           }
       }
-
-
-
-    // https://localhost:8080/categories/1/products
+      // https://localhost:8080/categories/1/products
     @GetMapping("{id}")
     @PreAuthorize("permitAll()")
     public Category getById(@PathVariable int id) {
@@ -78,12 +75,8 @@ public class CategoriesController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
         }
     }
-
-
-
     @PostMapping()// add annotation to call this method for a POST action
-    // add annotation to ensure that only an ADMIN can call this function
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")// add annotation to ensure that only an ADMIN can call this function
     public Category addCategory(@RequestBody Category category) {
         try {
             return categoryDao.create(category);
@@ -91,7 +84,6 @@ public class CategoriesController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
         }
     }
-
     // add annotation to call this method for a PUT (update) action - the url path must include the categoryId
     @PutMapping("{id}")
     // add annotation to ensure that only an ADMIN can call this function

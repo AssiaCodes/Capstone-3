@@ -118,7 +118,7 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao
     @Override
     public Product create(Product product)
     {
-
+    //Inserts a new product into the database and returns the inserted product with the generated ID.
         String sql = "INSERT INTO products(name, price, category_id, description, color, image_url, stock, featured) " +
                 " VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
@@ -159,6 +159,7 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao
     @Override
     public void update(int productId, Product product)
     {
+        //Updates all fields of an existing product by its ID.
         String sql = "UPDATE products" +
                 " SET name = ? " +
                 "   , price = ? " +
@@ -192,6 +193,8 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao
     }
 
     @Override
+
+    // Deletes a product from the database by its product ID.
     public void delete(int productId)
     {
 
@@ -210,7 +213,7 @@ public class MySqlProductDao extends MySqlDaoBase implements ProductDao
             throw new RuntimeException(e);
         }
     }
-
+    //Helper method to map a row from ResultSet to a Product object.
     protected static Product mapRow(ResultSet row) throws SQLException
     {
         int productId = row.getInt("product_id");
