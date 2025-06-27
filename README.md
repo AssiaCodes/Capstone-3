@@ -11,7 +11,6 @@ and checking out to place orders.
 - 🔐 User Registration & Login (JWT)
 - 📦 View Products by Category
 - 🔍 Product Search and Filtering (by category, price, color)
-- 🛒 Shopping Cart (Add / Remove / View Items)
 - 📁 Category Management (Admin Only)
 - 🛠️ Product Management (Admin Only)
 - 🌐 Fully testable with Postman
