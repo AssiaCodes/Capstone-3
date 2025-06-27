@@ -63,14 +63,16 @@ and checking out to place orders.
 ![image](https://github.com/user-attachments/assets/dc816693-d430-481e-866f-a32ecbbcd448)
 
 ### Post http://localhost:8080/products
+![image](https://github.com/user-attachments/assets/c2ad1a1f-4969-46c2-bb18-004cebac58c6)
+
 
 ### Put http://localhost:8080/products/1
+![image](https://github.com/user-attachments/assets/bbccac8b-3ed3-4357-9591-38a580b9aea2)
+
 
 ### DELETE http://localhost:8080/products/1
 
-
-
-
+![image](https://github.com/user-attachments/assets/c94b2d67-1902-4562-a0e0-cb0adb4172dc)
 
 ### Screenshot for Capstone-client-web-application 
 ![image](https://github.com/user-attachments/assets/4a3cb5ae-1e69-4680-8bfd-4d9ccf68d291)
@@ -92,22 +94,37 @@ One interesting part of this project is how I implemented the feature to get all
 This is important because it allows users to easily browse items based on their interests, like electronics or clothing.
 
 ```
- // the url to return all products in category 1 would look like this
-    @GetMapping("{categoryId}/products")
-    @PreAuthorize("permitAll()")
-      public List<Product> getProductsById(@PathVariable int categoryId) {
+@Override
+    public List<Category> getAllCategories() {
+        List<Category> categories = new ArrayList<>();
+        // SQL query to fetch all rows from the categories table.
+        String sql = "SELECT * FROM categories";
 
-          try {
-              var category = productDao.listByCategoryId(categoryId);
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
 
-              if (category == null)
-                  throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            // Loop through each row in the ResultSet.
+            while (rs.next()) {
+                // Create a new Category object.
+                Category category = new Category();
 
-              //Get products by categoryId
-              return category;
+                // Set the categories ID from the "CategoryID" column.
+                category.setCategory_id(rs.getInt("Category_id"));
 
-          } catch (Exception ex) {
-              throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
-          }
-      }
+                // Set the categories name from the "CategoryName" column.
+                category.setName(rs.getString("name"));
+
+                // Add the category object to our list.\
+                categories.add(category);
+            }
+        } catch (SQLException e) {
+            // If something goes wrong (SQL error), print the stack trace to help debug.
+            e.printStackTrace();
+        }
+
+        // Return the list categories
+        return categories;
+    }
+ 
 ```
